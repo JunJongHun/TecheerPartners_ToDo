@@ -1,3 +1,17 @@
+@import "../abstracts/variables";
 .layout {
-  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 60%;
+  max-width: 500px;
+  min-width: 500px;
+
+  height: 60%;
+  max-height: 600px;
+  min-height: 600px;
+
+  background-color: $main--bg--color;
 }

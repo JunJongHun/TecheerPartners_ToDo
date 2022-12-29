@@ -4,8 +4,6 @@ import Layout from "./components/Layout";
 import Main from "./components/Main";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { func } from "prop-types";
-import { type } from "os";
 
 export type TodoType = { text: string; active: boolean; id: string };
 export type TodoList = TodoType[];
@@ -42,12 +40,19 @@ function App() {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   };
 
+  const handleAllDeleteTodoList = () => {
+    setTodoList([]);
+  };
+
   let showTodoList = getShowTodoList(todoList, type);
 
   return (
     <>
       <Layout>
-        <Header handleChangeType={handleChangeType}></Header>
+        <Header
+          handleChangeType={handleChangeType}
+          handleAllDeleteTodoList={handleAllDeleteTodoList}
+        ></Header>
         <Main
           showTodoList={showTodoList}
           handleChangeActive={handleChangeActive}

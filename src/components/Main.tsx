@@ -1,7 +1,29 @@
 import React from "react";
+import { TodoList } from "../App";
 
-function Main() {
-  return <main className="layout__main">main</main>;
+type MainType = {
+  todoList: TodoList;
+  handleChangeActive: (id: string) => void;
+};
+
+function Main({ todoList, handleChangeActive }: MainType) {
+  return (
+    <main className="layout__main">
+      <ul>
+        {todoList.map((todo) => (
+          <li
+            key={todo.id}
+            onClick={() => {
+              handleChangeActive(todo.id);
+            }}
+          >
+            <input type="checkbox" readOnly checked={todo.active} />
+            <span>{todo.text}</span>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
 }
 
 export default Main;

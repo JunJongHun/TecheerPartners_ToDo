@@ -4,6 +4,8 @@ import Layout from "./components/Layout";
 import Main from "./components/Main";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { func } from "prop-types";
+import { type } from "os";
 
 export type TodoType = { text: string; active: boolean; id: string };
 export type TodoList = TodoType[];
@@ -11,6 +13,7 @@ export type TodoList = TodoType[];
 function App() {
   const [text, setText] = useState("");
   const [todoList, setTodoList] = useState<TodoList>([]);
+  const [type, setType] = useState("ALL");
   // 할일 목록 입력받기
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
@@ -31,12 +34,19 @@ function App() {
     setTodoList(data);
   };
 
+  const handleChangeType = (type: string) => {
+    setType(type);
+  };
+
+  let showTodoList = getShowTodoList(todoList, type);
+
   return (
     <>
       <Layout>
-        <Header></Header>
+        <Header handleChangeType={handleChangeType}></Header>
         <Main
-          todoList={todoList}
+          type={type}
+          showTodoList={showTodoList}
           handleChangeActive={handleChangeActive}
         ></Main>
         <Footer
@@ -48,5 +58,13 @@ function App() {
     </>
   );
 }
+
+const getShowTodoList = (todoList: TodoList, type: string) => {
+  if (type === "ALL") return todoList;
+  else if (type === "ACTIVE")
+    return todoList.filter((todo) => todo.active === true);
+  else if (type === "INACTIVE")
+    return todoList.filter((todo) => todo.active === false);
+};
 
 export default App;

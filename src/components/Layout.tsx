@@ -9,8 +9,6 @@ type LayoutType = {
 // }
 
 function Layout({ children }: LayoutType) {
-  console.log(window.Node);
-
   return <section className="layout">{children}</section>;
 }
 

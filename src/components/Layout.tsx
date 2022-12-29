@@ -1,6 +1,10 @@
 import React from "react";
 
-function Layout(props) {
+interface IProps {
+  children: any;
+}
+
+function Layout(props: IProps) {
   return <section className="layout">{props.children}</section>;
 }
 

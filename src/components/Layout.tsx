@@ -1,11 +1,17 @@
 import React from "react";
 
-interface IProps {
-  children: any;
-}
+type LayoutType = {
+  children: React.ReactNode;
+};
 
-function Layout(props: IProps) {
-  return <section className="layout">{props.children}</section>;
+// interface Layout {
+//   children: React.ReactNode;
+// }
+
+function Layout({ children }: LayoutType) {
+  console.log(window.Node);
+
+  return <section className="layout">{children}</section>;
 }
 
 export default Layout;

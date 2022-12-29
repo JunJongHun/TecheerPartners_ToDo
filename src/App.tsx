@@ -38,6 +38,10 @@ function App() {
     setType(type);
   };
 
+  const handleDeleteTodo = (id: string) => {
+    setTodoList(todoList.filter((todo) => todo.id !== id));
+  };
+
   let showTodoList = getShowTodoList(todoList, type);
 
   return (
@@ -45,9 +49,9 @@ function App() {
       <Layout>
         <Header handleChangeType={handleChangeType}></Header>
         <Main
-          type={type}
           showTodoList={showTodoList}
           handleChangeActive={handleChangeActive}
+          handleDeleteTodo={handleDeleteTodo}
         ></Main>
         <Footer
           text={text}
